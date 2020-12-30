@@ -1,3 +1,13 @@
+'''
+@author: SvanurH
+@create_time: 2020-12-29
+@updated_time: 2020-12-30
+待实现内容:
+    进行数据保存工作，存储到mongodb数据库
+    数据处理，数据可视化功能
+    
+'''
+
 import requests
 import json
 import pymongo
@@ -94,4 +104,3 @@ class SpiderForView:
 a = SpiderForView()
 a.run()
 
-'''待实现内容，获取每个视频的标签，并加入到视频当中'''
