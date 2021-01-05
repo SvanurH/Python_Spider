@@ -19,7 +19,8 @@ class SpiderForView:
 
     def run(self):
         for i in range(1, 2):  # i为页数
-            self.__run_spider(i)
+            for k in self.__run_spider(i):
+                yield k
 
     def __run_spider(self, i):
         data_video = self.__spider(self.video_url.format(page=i))  # 通过格式化url传递到爬虫中
@@ -27,7 +28,7 @@ class SpiderForView:
             for info in self.__video_data_handle(data_video['data']['list']):
                 tags = self.__spider_tags(info['video_info']['aid'])
                 info['video_info']['tags'] = tags
-                # yield info
+                yield info
         else:  # 如果爬取不成功就返回false
             return false
 
@@ -90,17 +91,4 @@ class SpiderForView:
             tags.append(tag)
         return tags
 
-    def __mongodb_storage(self, data):
-        '''
-        通过mongodb数据库保存数据
-        @params
-            data:需要接受的数据
-        '''
-        client = pymongo.MongoClient("mongodb://localhost:27017/")
-        db = client['python']
-        col = db['blibli_info']
-        col.insert_one(data)
-
-a = SpiderForView()
-a.run()
 
