@@ -10,7 +10,6 @@
 
 import requests
 import json
-import pymongo
 
 
 class SpiderForView:
@@ -18,8 +17,11 @@ class SpiderForView:
         self.video_url = 'https://api.bilibili.com/x/web-interface/popular?ps=50&pn={page}'  # blibli网站热门api,定义page参数为页数
 
     def run(self):
-        for i in range(1, 2):  # i为页数
-            for k in self.__run_spider(i):
+        for i in range(1, 50):  # i为页数
+            datas = self.__run_spider(i)
+            if not datas:
+                yield False
+            for k in datas:
                 yield k
 
     def __run_spider(self, i):
