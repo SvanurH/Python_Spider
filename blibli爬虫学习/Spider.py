@@ -88,7 +88,7 @@ class SpiderForView:
         tag_list = self.__spider(tag_api_url)['data']
         tags = []
         for tag in tag_list:
-            tags.append(tag)
+            tags.append(tag['tag_name'])
         return tags
 
 
