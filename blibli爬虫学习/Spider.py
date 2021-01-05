@@ -30,7 +30,7 @@ class SpiderForView:
                 info['video_info']['tags'] = tags
                 yield info
         else:  # 如果爬取不成功就返回false
-            return false
+            return False
 
     def __spider(self, url):
         '''
